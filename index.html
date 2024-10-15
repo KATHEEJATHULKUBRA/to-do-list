@@ -19,16 +19,12 @@
             background: white;
             padding: 20px;
             border-radius: 8px;
-             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
             width: 300px;
-            
-          
-          
         }
 
         h1 {
             text-align: center;
-          
         }
 
         input {
@@ -43,16 +39,15 @@
             padding: 10px;
             border: 1.5px solid rgb(245, 67, 96);
             background-color: white;
-            color:  rgb(245, 67, 96);
+            color: rgb(245, 67, 96);
             border-radius: 4px;
             cursor: pointer;
             margin-top: 20px;
-           margin-left: 98px ;
-            
+            margin-left: 98px;
         }
 
         button:hover {
-            background-color:  rgb(245, 67, 96);
+            background-color: rgb(245, 67, 96);
             color: white;
         }
 
@@ -104,7 +99,15 @@
                 const taskList = document.getElementById('taskList');
                 const li = document.createElement('li');
                 
-                li.textContent = taskText;
+                // Create checkbox
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.addEventListener('change', function() {
+                    li.classList.toggle('completed', checkbox.checked);
+                });
+
+                li.appendChild(checkbox);
+                li.appendChild(document.createTextNode(taskText));
 
                 // Create remove button
                 const removeButton = document.createElement('button');
@@ -115,9 +118,6 @@
                 });
 
                 li.appendChild(removeButton);
-                li.addEventListener('click', function() {
-                    li.classList.toggle('completed');
-                });
                 
                 taskList.appendChild(li);
                 taskInput.value = ''; // Clear input
